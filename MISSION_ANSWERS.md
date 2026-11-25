@@ -202,8 +202,10 @@ Header `Server: nginx` + các security header chứng tỏ request đi qua Nginx
 
 ### Exercise 3.1 / 3.2: Nền tảng chính
 
-- **Nền tảng:** Railway (config: [`06-lab-complete/railway.toml`](06-lab-complete/railway.toml))
-- **URL:** `<<ĐIỀN SAU KHI DEPLOY>>`, chi tiết trong [DEPLOYMENT.md](DEPLOYMENT.md)
+- **Nền tảng:** Render, Exercise 3.2 (Blueprint [`06-lab-complete/render.yaml`](06-lab-complete/render.yaml): web service Docker `day14-production-agent` + Key Value `day14-redis`, region Singapore)
+- **URL:** **https://day14-production-agent-9j3m.onrender.com**, chi tiết và lệnh test trong [DEPLOYMENT.md](DEPLOYMENT.md)
+- **Tự kiểm (CP6):** `/health` → 200, `/ready` → 200 (`{"status":"ready","redis":"ok"}`), `/ask` không key → 401, sai key → 401, có key → 200. `check_production_ready.py --public-url …` → `✅ Public URL: GET …/health → 200`
+- `AGENT_API_KEY` đặt trên dashboard Render (`sync: false`), `REDIS_URL` nối tự động từ Key Value. Không secret nào nằm trong repo
 - **Ảnh:** [screenshots/dashboard.png](screenshots/dashboard.png), [screenshots/running.png](screenshots/running.png), [screenshots/test.png](screenshots/test.png)
 
 ### So sánh `railway.toml` và `render.yaml` (nền tảng còn lại)
